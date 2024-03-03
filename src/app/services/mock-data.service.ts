@@ -7,7 +7,7 @@ import { IMockData } from '../models/mockData.model';
 })
 export class MockDataService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
   getData(): Observable<IMockData[]>{
    
     return of([{

@@ -23,10 +23,10 @@ export abstract class Bloc<
 
   abstract processEvent(event: BlocEvent): Map<BlocEvent, BlocState>;
 
- /*  addState(event: BlocEvent) {
+  addState(event: BlocEvent) {
     // will work only in case of event is mapped to sepecefic state
     if (this.processEvent(event).has(event)) {
       this.emitState(this.processEvent(event).get(event) as BlocState);
     }
-  } */
+  }
 }
