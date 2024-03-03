@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Bloc } from '../BaseBloc';
 import { IMockData } from 'src/app/models/mockData.model';
-import { GetCurrentValue, GetMockData, MockDataEvent } from './MockDataEvents';
+
 
 let mockDataState!: IMockData;
-
+type allowedEvents = "getMockData" | "getCurrentValue";
 @Injectable({
     providedIn: 'root',
 })
-export class MockDataBloc extends Bloc<MockDataEvent, IMockData>{
+export class MockDataBloc extends Bloc<allowedEvents, IMockData>{
     constructor() {
         super(mockDataState);
     }
-    override processEvent(event: MockDataEvent): Map<MockDataEvent, IMockData> {
-        let eventsMap = new Map<MockDataEvent, IMockData>();
-        if (event instanceof GetMockData) {
-            
-        }
-        else if (event instanceof GetCurrentValue) {
-
+    override processEvent(event: allowedEvents): Map<allowedEvents, IMockData> {
+        let eventsMap = new Map<allowedEvents, IMockData>();
+        switch (event) {
+            case "getMockData":
+                break;
+            case "getCurrentValue":
+                break;
+            default:
+                break
         }
         return eventsMap
     }
