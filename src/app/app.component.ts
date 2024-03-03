@@ -10,7 +10,7 @@ import { IMockData } from './models/mockData.model';
 export class AppComponent implements OnInit {
   title = 'bloc-app';
   mockData!: IMockData[]
-  constructor(private bloc: MockDataBloc) {
+  constructor(public bloc: MockDataBloc) {
 
   }
   ngOnInit(): void {
@@ -18,8 +18,5 @@ export class AppComponent implements OnInit {
   }
   getData() {
     this.bloc.addState("getMockData")
-    this.bloc.subscribe(data => {
-      this.mockData = data
-    })
   }
 }
