@@ -17,6 +17,6 @@ export class AppComponent implements OnInit {
     this.getData()
   }
   getData() {
-    this.bloc.addState("getMockData")
+    this.bloc.addEvent("getMockData")
   }
 }
