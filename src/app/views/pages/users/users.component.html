@@ -1,0 +1,30 @@
+<table class="table table-hover animate__animated animate__fadeIn" *ngIf="!loading else loader">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Last Name</td>
+            <td>Phone</td>
+            <td>Email</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users"  [ngClass]="{'table-danger opacity-50': user.isDeleting}">
+            <td>{{user.name}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.email}}</td>
+            <td><button [disabled]="user.isDeleting" class="btn btn-danger" (click)="delete(user)">Remove
+                <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+            </button></td>
+
+        </tr>
+    </tbody>
+</table>
+<ng-template #loader>
+    <div class="col-12 pt-4 d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>

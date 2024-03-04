@@ -1,0 +1,29 @@
+<table class="table table-hover animate__animated animate__fadeIn" *ngIf="!loading else loader">
+    <thead>
+        <tr>
+            <td>Detail</td>
+            <td>Currency</td>
+            <td>Amount</td>
+            <td>Date</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let invoice of invoices" [ngClass]="{'table-danger opacity-50': invoice.isDeleting}">
+            <td>{{invoice.detail}}</td>
+            <td>{{invoice.currency}}</td>
+            <td>{{invoice.amount}}</td>
+            <td>{{invoice.creationDate | date:'yyyy-MM-dd HH:mm'}}</td>
+            <td><button [disabled]="invoice.isDeleting" class="btn btn-danger" (click)="delete(invoice)">Remove
+                <span *ngIf="invoice.isDeleting" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"></span>
+            </button></td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #loader>
+    <div class="col-12 pt-4 d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>

@@ -1,32 +1,19 @@
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable } from 'rxjs';
 
-export abstract class Bloc<
-  BlocEvent,
-  BlocState
-> extends BehaviorSubject<BlocState> {
-  /**
-   * @description : you must give the bloc initial state to start
-   */
-  state: BlocState;
-  constructor(initialState: BlocState) {
-    super(initialState);
-    this.state = initialState;
+export abstract class Bloc<T> extends BehaviorSubject<T>{ 
+  readonly state$: Observable<T> = this.asObservable();
+  // override subject: BehaviorSubject<IInvoice[]> = new BehaviorSubject<IInvoice[]>([]);
+  // readonly state$: Observable<IInvoice[]> = this.subject.asObservable();
+  currentValue: T;
+  constructor(state: T) {
+    super(state);
+    this.next(state);  
+    this.currentValue = state;
   }
-
-  /**
-   * @description : we use emit to emit new State to listeners
-   */
-  emitState(state: BlocState) {
-    this.state = state;
-    this.next(this.state);
+  
+  emit(state: T){
+    this.next(state);
+    this.currentValue = state; 
   }
-
-  abstract processEvent(event: BlocEvent): Map<BlocEvent, BlocState>;
-
-  addEvent(event: BlocEvent) {
-    // will work only in case of event is mapped to sepecefic state
-    if (this.processEvent(event).has(event)) {
-      this.emitState(this.processEvent(event).get(event) as BlocState);
-    }
-  }
+ 
 }
