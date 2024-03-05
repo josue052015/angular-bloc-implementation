@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: "users", pathMatch: 'full'},
-  { path: 'users', loadChildren: () => import('./views/pages/users/users-module').then(m => m.UsersModule) },
-  { path: 'invoices', loadChildren: () => import('./views/pages/invoices/invoices-module').then(m => m.InvoicesModule) }, 
+  { path: 'users', loadChildren: () => import('./modules/users/users-module').then(m => m.UsersModule) },
+  { path: 'invoices', loadChildren: () => import('./modules/invoices/invoices-module').then(m => m.InvoicesModule) }, 
 ];
 
 @NgModule({
