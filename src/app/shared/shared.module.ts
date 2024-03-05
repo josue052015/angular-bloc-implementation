@@ -26,8 +26,7 @@ import { Pipe1Pipe } from '../core/pipes/pipe1.pipe';
   ],
   imports: [
     CommonModule,
-    UsersModule,
-    InvoicesModule,
+   
   ],
   exports: [
     Test1Component,
